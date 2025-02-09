@@ -1,10 +1,12 @@
+import { useCitiesContext } from "../contexts/CitiesContext";
 import CountryItem from "./CountryItem";
 import styles from "./CountryList.module.css";
 import Message from "./Message";
 import Spinner from "./Spinner";
 
-function CountryList({ cities, citiesLoading }) {
-  if (citiesLoading) return <Spinner />;
+function CountryList() {
+  const { cities, isLoading } = useCitiesContext();
+  if (isLoading) return <Spinner />;
   if (!cities?.length) return <Message message={"Add cities to your list"} />;
 
   const countries = cities.reduce((arr, cur) => {

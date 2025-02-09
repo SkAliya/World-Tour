@@ -7,6 +7,13 @@ function Button({ type, handleFunc, children }) {
       </button>
     );
   }
+  if (type === "position") {
+    return (
+      <button className={`btn ${styles.position}`} onClick={() => handleFunc()}>
+        {children}
+      </button>
+    );
+  }
   return (
     <button className={`btn ${styles.back}`} onClick={handleFunc}>
       {children}
