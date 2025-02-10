@@ -100,8 +100,8 @@ function CitiesProvider({ children }) {
   async function deleteCity(id) {
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${Base_URL}/cities/${id}`, {
-        method: "Delete",
+      await fetch(`${Base_URL}/cities/${id}`, {
+        method: "DELETE",
       });
 
       dispatch({ type: "city/deleted", payload: id });

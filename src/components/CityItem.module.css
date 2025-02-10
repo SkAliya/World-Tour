@@ -15,7 +15,11 @@
   text-decoration: none;
 }
 
-.cityItem--active {
+/* .cityItem--active {
+  border: 2px solid var(--color-brand--2);
+  border-left: 5px solid var(--color-brand--2);
+} */
+.city--active {
   border: 2px solid var(--color-brand--2);
   border-left: 5px solid var(--color-brand--2);
 }

@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "./CityItem.module.css";
 import { useCitiesContext } from "../contexts/CitiesContext";
 import Spinner from "./Spinner";
 import Message from "./Message";
+// import { useEffect, useState } from "react";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -19,19 +20,32 @@ function CityItem({ city }) {
     id,
     position: { lat, lng },
   } = city;
-  const [deleteCity, isLoading, errMessage] = useCitiesContext();
+  const { deleteCity, isLoading, errMessage, currentCity } = useCitiesContext();
+  const { urlId } = useParams();
 
-  function handleDelete() {
+  function handleDelete(e) {
+    e.preventDefault();
     deleteCity(id);
   }
 
+  // useEffect(
+  //   function () {
+  //     if (urlId) setCurrCityId(Number(urlId));
+  //   },
+  //   [urlId]
+  // );
   {
     /* <Link to={`${id}`} className={styles.cityItem}> */
   }
   if (isLoading) return <Spinner />;
   if (errMessage) return <Message message={errMessage} />;
   return (
-    <Link to={`${id}?lat=${lat}&lng=${lng}`} className={styles.cityItem}>
+    <Link
+      to={`${id}?lat=${lat}&lng=${lng}`}
+      className={`${styles.cityItem} ${
+        id === currentCity ? styles["cityItem--active"] : ""
+      }`}
+    >
       <div className={styles.emoji}>{emoji}</div>
       <div className={styles.name}>{cityName}</div>
       <div className={styles.date}>({formatDate(date)})</div>

@@ -112,7 +112,13 @@ function Form() {
         <Button type="primary" handleFunc={() => handleAddCity()}>
           &#43; Add
         </Button>
-        <Button type="back" handleFunc={() => navigate(-1)}>
+        <Button
+          type="back"
+          handleFunc={(e) => {
+            e.preventDefault();
+            navigate(-1);
+          }}
+        >
           &larr; Back
         </Button>
         {/* <button>Add</button>
